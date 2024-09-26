@@ -1,3 +1,6 @@
-[gd_scene format=3 uid="uid://bk3686in6ebpq"]
+[gd_scene load_steps=2 format=3 uid="uid://bk3686in6ebpq"]
+
+[ext_resource type="Script" path="res://kartero_rubaĵo/Provo.cs" id="1_31b35"]
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource("1_31b35")
