@@ -1,6 +1,54 @@
-[gd_scene load_steps=2 format=3 uid="uid://bk3686in6ebpq"]
+[gd_scene load_steps=4 format=3 uid="uid://bk3686in6ebpq"]
 
 [ext_resource type="Script" path="res://kartero_rubaĵo/Provo.cs" id="1_31b35"]
+[ext_resource type="PackedScene" uid="uid://cel5b6t557hbr" path="res://kartero_rubaĵo/player.tscn" id="2_g84ff"]
+[ext_resource type="PackedScene" uid="uid://b2gtxndaixlor" path="res://kartero_rubaĵo/kuriero.tscn" id="3_okkfe"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_31b35")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(576, 323)
+
+[node name="Player" parent="." instance=ExtResource("2_g84ff")]
+position = Vector2(588, 472)
+
+[node name="Kuriero" parent="." instance=ExtResource("3_okkfe")]
+position = Vector2(100, 96)
+_moveSpeed = 150.0
+
+[node name="Kuriero2" parent="." instance=ExtResource("3_okkfe")]
+position = Vector2(90, 267)
+_moveSpeed = 150.0
+
+[node name="Kuriero4" parent="." instance=ExtResource("3_okkfe")]
+position = Vector2(351, 92)
+_moveSpeed = 150.0
+
+[node name="Kuriero6" parent="." instance=ExtResource("3_okkfe")]
+position = Vector2(594, 92)
+_moveSpeed = 150.0
+
+[node name="Kuriero8" parent="." instance=ExtResource("3_okkfe")]
+position = Vector2(826, 87)
+_moveSpeed = 150.0
+
+[node name="Kuriero10" parent="." instance=ExtResource("3_okkfe")]
+position = Vector2(1053, 77)
+_moveSpeed = 150.0
+
+[node name="Kuriero12" parent="." instance=ExtResource("3_okkfe")]
+position = Vector2(228, 177)
+_moveSpeed = 150.0
+
+[node name="Kuriero14" parent="." instance=ExtResource("3_okkfe")]
+position = Vector2(445, 184)
+_moveSpeed = 150.0
+
+[node name="Kuriero16" parent="." instance=ExtResource("3_okkfe")]
+position = Vector2(722, 186)
+_moveSpeed = 150.0
+
+[node name="Kuriero18" parent="." instance=ExtResource("3_okkfe")]
+position = Vector2(925, 182)
+_moveSpeed = 150.0

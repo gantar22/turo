@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2gtxndaixlor"]
+
+[ext_resource type="Script" path="res://kartero_rubaĵo/Kuriero.cs" id="1_nbfau"]
+[ext_resource type="Texture2D" uid="uid://b3g85kpjjm4ur" path="res://kartero_rubaĵo/fek_kuriero.svg" id="2_l08qs"]
+
+[node name="Kuriero" type="Node2D"]
+position = Vector2(319, 425)
+script = ExtResource("1_nbfau")
+_moveSpeed = 175.0
+
+[node name="FekKuriero" type="Sprite2D" parent="."]
+scale = Vector2(0.14, 0.14)
+texture = ExtResource("2_l08qs")
