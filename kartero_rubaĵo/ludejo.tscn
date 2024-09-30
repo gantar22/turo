@@ -6,49 +6,22 @@
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_31b35")
+TuroScene = ExtResource("2_g84ff")
+KurieroScene = ExtResource("3_okkfe")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(576, 323)
 
-[node name="Player" parent="." instance=ExtResource("2_g84ff")]
-position = Vector2(588, 472)
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Kuriero" parent="." instance=ExtResource("3_okkfe")]
-position = Vector2(100, 96)
-_moveSpeed = 150.0
+[node name="Sano" type="ProgressBar" parent="CanvasLayer"]
+offset_right = 255.0
+offset_bottom = 47.0
+value = 100.0
 
-[node name="Kuriero2" parent="." instance=ExtResource("3_okkfe")]
-position = Vector2(90, 267)
-_moveSpeed = 150.0
-
-[node name="Kuriero4" parent="." instance=ExtResource("3_okkfe")]
-position = Vector2(351, 92)
-_moveSpeed = 150.0
-
-[node name="Kuriero6" parent="." instance=ExtResource("3_okkfe")]
-position = Vector2(594, 92)
-_moveSpeed = 150.0
-
-[node name="Kuriero8" parent="." instance=ExtResource("3_okkfe")]
-position = Vector2(826, 87)
-_moveSpeed = 150.0
-
-[node name="Kuriero10" parent="." instance=ExtResource("3_okkfe")]
-position = Vector2(1053, 77)
-_moveSpeed = 150.0
-
-[node name="Kuriero12" parent="." instance=ExtResource("3_okkfe")]
-position = Vector2(228, 177)
-_moveSpeed = 150.0
-
-[node name="Kuriero14" parent="." instance=ExtResource("3_okkfe")]
-position = Vector2(445, 184)
-_moveSpeed = 150.0
-
-[node name="Kuriero16" parent="." instance=ExtResource("3_okkfe")]
-position = Vector2(722, 186)
-_moveSpeed = 150.0
-
-[node name="Kuriero18" parent="." instance=ExtResource("3_okkfe")]
-position = Vector2(925, 182)
-_moveSpeed = 150.0
+[node name="Energio" type="ProgressBar" parent="CanvasLayer"]
+offset_left = 1.0
+offset_top = 599.0
+offset_right = 256.0
+offset_bottom = 646.0
+value = 100.0
