@@ -68,11 +68,13 @@ public partial class Kuriero : Node2D
 				line.Points[0] = new Vector2();
 				line.Points[1] = new Vector2();
 				float length = 0f;
-				while (length < Mathf.Max(_target.Position.DistanceTo(Position),200f) && GetViewportRect().HasPoint(Position + attackAngle * length))
+				float limit = Mathf.Max(attackAngle.Dot(_target.Position - Position), 200f);
+				while (length < limit && GetViewportRect().HasPoint(Position + attackAngle * length))
 				{
 					line.SetPointPosition(1,attackAngle * length);
 					length += (float)GetProcessDeltaTime() * 475f;
 					await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
+					limit = Mathf.Max(attackAngle.Dot(_target.Position - Position), 200f);
 				}
 
 				await ToSignal(GetTree().CreateTimer(.125), Timer.SignalName.Timeout);

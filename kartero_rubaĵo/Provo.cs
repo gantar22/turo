@@ -39,20 +39,26 @@ public partial class Provo : Node2D
 	private async Task _SpawnRoutine()
 	{
 		await ToSignal(GetTree().CreateTimer(2.5), Timer.SignalName.Timeout);
+		int nivelo = 1;
 		while (true)
 		{
 			List<Task> tasks = new List<Task>();
 			Rect2 viewport = GetViewportRect();
-			Rect2 zone = new Rect2();
+			for (int i = 0; i < nivelo; i++)
 			{
-				zone.Position = new Vector2((float)GD.RandRange(0,viewport.Size.X),(float)GD.RandRange(0,viewport.Size.Y));
-				zone.End = new Vector2((float)GD.RandRange(zone.Position.X,viewport.Size.X),(float)GD.RandRange(zone.Position.Y,viewport.Size.Y));
-			};
-			tasks.Add(_SpawnOneKuriero(zone));
+				Rect2 zone = new Rect2();
+				{
+					zone.Position = new Vector2((float)GD.RandRange(0,viewport.Size.X),(float)GD.RandRange(0,viewport.Size.Y));
+					zone.End = new Vector2((float)GD.RandRange(zone.Position.X,viewport.Size.X),(float)GD.RandRange(zone.Position.Y,viewport.Size.Y));
+				};
+				tasks.Add(_SpawnOneKuriero(zone));
+			}
 			while (tasks.Any(_=>!_.IsCompleted))
 			{
 				await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
 			}
+
+			nivelo++;
 			await ToSignal(GetTree().CreateTimer(1), Timer.SignalName.Timeout);
 		}
 	}

@@ -111,6 +111,10 @@ public partial class Player : Node2D
 		float length = 0f;
 		while (state == State.Charge)
 		{
+			if (_inputDir.Length() > .001f)
+			{
+				attackDir = _inputDir;
+			}
 			float delta = (float)GetProcessDeltaTime();
 			if (energio > 0)
 			{
@@ -158,10 +162,11 @@ public partial class Player : Node2D
 		if (state != State.Charge)
 		{
 			energio += .5f * (float)delta;
+			energio = Mathf.Min(1, energio);
 		}
 		
 		var pos = GetPosition();
-		pos += _inputDir * (float)delta * moveSpeed * (state == State.Charge ? .5f : 1f);
+		pos += _inputDir * (float)delta * moveSpeed * (state == State.Charge ? .4f : 1f);
 		var viewRect = GetViewportRect();
 		{
 			pos.X = (pos.X + (pos.X < 0 ? viewRect.Size.X : 0f)) % viewRect.Size.X;
