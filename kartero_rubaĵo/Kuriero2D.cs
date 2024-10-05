@@ -3,7 +3,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 
-public partial class Kuriero : Node2D
+public partial class Kuriero2D : Node2D
 {
 	[Export] private float _moveSpeed = 100f;
 
@@ -14,7 +14,7 @@ public partial class Kuriero : Node2D
 
 	private SceneTreeTimer _turnTimer;
 
-	private Player _target;
+	private Ludanto.Ludanto _target;
 
 	public enum State
 	{
@@ -33,7 +33,7 @@ public partial class Kuriero : Node2D
 		// bizara magiko: sen rulilo, la asynka funkcia ruliĝas
 	}
 
-	public async void Init(Player _player)
+	public async void Init(Ludanto.Ludanto _player)
 	{
 		_target = _player;
 		var _ = TurnRoutine();

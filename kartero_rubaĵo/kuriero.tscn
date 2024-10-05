@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://b2gtxndaixlor"]
+[gd_scene load_steps=5 format=3 uid="uid://b2gtxndaixlor"]
 
 [ext_resource type="Script" path="res://kartero_rubaĵo/Kuriero.cs" id="1_nbfau"]
 [ext_resource type="Texture2D" uid="uid://b3g85kpjjm4ur" path="res://kartero_rubaĵo/fek_kuriero.svg" id="2_l08qs"]
+[ext_resource type="Script" path="res://kartero_rubaĵo/KurieroVundSkatolo.cs" id="3_n2abg"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0npyu"]
 radius = 6.0
@@ -17,6 +18,7 @@ scale = Vector2(0.14, 0.14)
 texture = ExtResource("2_l08qs")
 
 [node name="Area2D" type="Area2D" parent="."]
+script = ExtResource("3_n2abg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(-1, 5)

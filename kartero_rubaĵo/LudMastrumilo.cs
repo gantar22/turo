@@ -1,30 +1,61 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
-public partial class Provo : Node2D
+public partial class LudMastrumilo : Node2D
 {
+	public abstract record class Stato
+	{
+		public record ĈefmenuStato
+		{
+			public Ĉefmenuo Ĉefmenuo;
+		}
+
+		public record Ludo
+		{
+			private HashSet<Kuriero2D> _vivajKurieroj = new HashSet<Kuriero2D>();
+			
+			// farenda: movu sanon al la ludanto
+			public double _playerHealth;
+			private Ludanto.Ludanto _turo;
+		}
+	}
+	
 	[Export]
 	public PackedScene TuroScene { get; set; }
 	
 	[Export]
 	public PackedScene KurieroScene { get; set; }
 	
+	[Export] private PackedScene ĈefmenuSceno {get; set; }
+
+	[Export] private Camera2D _kamerao;
+	
 	private double _playerHealth = 100;
 
-	private HashSet<Kuriero> _vivajKurieroj = new HashSet<Kuriero>();
+	private Ĉefmenuo _ĉefmenuo;
 
-	private Player _turo = null;
+	private HashSet<Kuriero2D> _vivajKurieroj = new HashSet<Kuriero2D>();
+
+	private Ludanto.Ludanto _turo = null;
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		_turo = (Player)TuroScene.Instantiate();
-		_turo.Position = GetViewportRect().Position + .5f * GetViewportRect().Size;
-		AddChild(_turo);
-		var _ = _SpawnRoutine();
+		_ĉefmenuo = (Ĉefmenuo)ĈefmenuSceno.Instantiate();
+		_ĉefmenuo.Reparent(_kamerao,false);
+		_ĉefmenuo.EkButono.Pressed += () =>
+		{
+			_ĉefmenuo.EkButono.Hide();
+			
+			_turo = (Ludanto.Ludanto)TuroScene.Instantiate();
+			_turo.Position = GetViewportRect().Position + .5f * GetViewportRect().Size;
+			AddChild(_turo);
+			var _ = _SpawnRoutine();
+		};
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -70,7 +101,7 @@ public partial class Provo : Node2D
 			await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
 		}
 		
-		var malamiko = (Kuriero)KurieroScene.Instantiate();
+		var malamiko = (Kuriero2D)KurieroScene.Instantiate();
 		AddChild(malamiko);
 		_vivajKurieroj.Add(malamiko);
 		malamiko.Position = Zone.Position + .5f * Zone.Size;
@@ -78,10 +109,10 @@ public partial class Provo : Node2D
 		bool done = false;
 		malamiko.OnHitPlayer += () =>
 		{
-			if (malamiko.state == Kuriero.State.Attack)
+			if (malamiko.state == Kuriero2D.State.Attack)
 			{
 				_playerHealth -= 10;
-			} else if (_turo.state != Player.State.Attack)
+			} else if (_turo.stato is not Ludanto.Ludanto.Stato.Atakanta)
 			{
 				_playerHealth -= 5;
 			}

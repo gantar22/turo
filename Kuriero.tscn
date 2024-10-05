@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://s726cbt0e57"]
+
+[ext_resource type="Script" path="res://Kuriero.cs" id="1_p8hvt"]
+[ext_resource type="ArrayMesh" uid="uid://ofdbtvgx2n4o" path="res://kuriero.obj" id="2_6vk07"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_p8avs"]
+radius = 0.168724
+height = 0.672019
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_i0u6h"]
+height = 0.744391
+radius = 0.172087
+
+[node name="Kuriero" type="CharacterBody3D" node_paths=PackedStringArray("vundigSkatolo")]
+collision_layer = 2
+axis_lock_linear_y = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+script = ExtResource("1_p8hvt")
+vundigSkatolo = NodePath("VundigSkatolo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.388883, 0)
+shape = SubResource("CapsuleShape3D_p8avs")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-5.46392e-09, 0, 0.125, 0, 0.125, 0, -0.125, 0, -5.46392e-09, 0, 0, 0)
+mesh = ExtResource("2_6vk07")
+skeleton = NodePath("")
+
+[node name="VundigSkatolo" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VundigSkatolo"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.441489, 0)
+shape = SubResource("CylinderShape3D_i0u6h")

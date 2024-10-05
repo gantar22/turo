@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://c2nwumbjfvcv"]
+
+[ext_resource type="Script" path="res://Turo3d.cs" id="1_3sxhn"]
+[ext_resource type="ArrayMesh" uid="uid://br3obsrug5ier" path="res://fekturo.obj" id="1_7pou1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t82qx"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_a53a8"]
+
+[node name="Turo" type="CharacterBody3D"]
+transform = Transform3D(0.125, 0, 0, 0, 0.125, 0, 0, 0, 0.125, 0, 0.22, 0)
+axis_lock_linear_y = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+script = ExtResource("1_3sxhn")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_7pou1")
+surface_material_override/0 = SubResource("StandardMaterial3D_t82qx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_a53a8")

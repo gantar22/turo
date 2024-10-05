@@ -1,13 +1,25 @@
-[gd_scene load_steps=4 format=3 uid="uid://bk3686in6ebpq"]
+[gd_scene load_steps=8 format=3 uid="uid://bk3686in6ebpq"]
 
 [ext_resource type="Script" path="res://kartero_rubaĵo/Provo.cs" id="1_31b35"]
-[ext_resource type="PackedScene" uid="uid://cel5b6t557hbr" path="res://kartero_rubaĵo/player.tscn" id="2_g84ff"]
 [ext_resource type="PackedScene" uid="uid://b2gtxndaixlor" path="res://kartero_rubaĵo/kuriero.tscn" id="3_okkfe"]
+[ext_resource type="PackedScene" uid="uid://nt82mxg3nc8n" path="res://UI/ĉefmenuo.tscn" id="4_tqfd8"]
+[ext_resource type="PackedScene" uid="uid://dl233ihve514k" path="res://Ludanto/Ludanto.tscn" id="5_u0bbg"]
 
-[node name="Node2D" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nrekm"]
+size = Vector2(1214, 28.75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_khfev"]
+size = Vector2(1178, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yx2cd"]
+size = Vector2(79, 777)
+
+[node name="Node2D" type="Node2D" node_paths=PackedStringArray("_kamerao")]
 script = ExtResource("1_31b35")
-TuroScene = ExtResource("2_g84ff")
+TuroScene = ExtResource("5_u0bbg")
 KurieroScene = ExtResource("3_okkfe")
+"ĈefmenuSceno" = ExtResource("4_tqfd8")
+_kamerao = NodePath("Camera2D")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(576, 323)
@@ -25,3 +37,22 @@ offset_top = 599.0
 offset_right = 256.0
 offset_bottom = 646.0
 value = 100.0
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2(546, -74)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2(53, 59.625)
+shape = SubResource("RectangleShape2D_nrekm")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2(38, 737)
+shape = SubResource("RectangleShape2D_khfev")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2(637.5, 396)
+shape = SubResource("RectangleShape2D_yx2cd")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2(-580, 390)
+shape = SubResource("RectangleShape2D_yx2cd")
