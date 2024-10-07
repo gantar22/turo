@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://ofdbtvgx2n4o"
+path="res://.godot/imported/kuriero.obj-57c54b991d4a0c22af46082605292cda.mesh"
+
+[deps]
+
+files=["res://.godot/imported/kuriero.obj-57c54b991d4a0c22af46082605292cda.mesh"]
+
+source_file="res://Roluloj/Malamikoj/kuriero.obj"
+dest_files=["res://.godot/imported/kuriero.obj-57c54b991d4a0c22af46082605292cda.mesh", "res://.godot/imported/kuriero.obj-57c54b991d4a0c22af46082605292cda.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

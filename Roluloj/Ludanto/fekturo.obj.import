@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://br3obsrug5ier"
+path="res://.godot/imported/fekturo.obj-0d7d2ecbbc9a46da0030f2f7000f5d67.mesh"
+
+[deps]
+
+files=["res://.godot/imported/fekturo.obj-0d7d2ecbbc9a46da0030f2f7000f5d67.mesh"]
+
+source_file="res://Roluloj/Ludanto/fekturo.obj"
+dest_files=["res://.godot/imported/fekturo.obj-0d7d2ecbbc9a46da0030f2f7000f5d67.mesh", "res://.godot/imported/fekturo.obj-0d7d2ecbbc9a46da0030f2f7000f5d67.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

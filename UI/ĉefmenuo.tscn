@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://nt82mxg3nc8n"]
 
 [ext_resource type="Script" path="res://UI/Ĉefmenuo.cs" id="1_g06kh"]
-[ext_resource type="Texture2D" uid="uid://t3h8n5njnha2" path="res://Ludanto/button_rectangle_line.svg" id="1_meshx"]
-[ext_resource type="FontFile" uid="uid://bjg5l7jffjit8" path="res://Ludanto/Kenney Future Square.ttf" id="2_p1mbj"]
+[ext_resource type="Texture2D" uid="uid://t3h8n5njnha2" path="res://UI/button_rectangle_line.svg" id="1_meshx"]
+[ext_resource type="FontFile" uid="uid://bjg5l7jffjit8" path="res://UI/Kenney Future Square.ttf" id="2_p1mbj"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_cf4d4"]
 font = ExtResource("2_p1mbj")

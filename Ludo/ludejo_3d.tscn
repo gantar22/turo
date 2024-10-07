@@ -1,0 +1,120 @@
+[gd_scene load_steps=17 format=3 uid="uid://v65pi7cwvvso"]
+
+[ext_resource type="Script" path="res://Ludo/Ludejo3d.cs" id="1_26x4p"]
+[ext_resource type="PackedScene" uid="uid://juyqe37obccf" path="res://Mondo/Tabulo/board.tscn" id="2_g248a"]
+[ext_resource type="Script" path="res://Ludo/Utilaĵoj/post_process_shader.gd" id="3_lqied"]
+[ext_resource type="PackedScene" uid="uid://ctl13plch680f" path="res://Ludo/Generado/GenerUmbro.tscn" id="3_r33pe"]
+[ext_resource type="PackedScene" uid="uid://c2nwumbjfvcv" path="res://Roluloj/Ludanto/turo3d.tscn" id="4_rxueu"]
+[ext_resource type="Script" path="res://Ludo/Utilaĵoj/SencimPaŭzilo.cs" id="5_x7g5r"]
+[ext_resource type="Script" path="res://Ludo/Utilaĵoj/MesaĝBuso.cs" id="6_6j6to"]
+[ext_resource type="Script" path="res://Ludo/Generado/MalamikSinSekvoj.cs" id="7_y4eld"]
+[ext_resource type="Script" path="res://Ludo/Generado/GenerGrupo.cs" id="8_1vaus"]
+[ext_resource type="Script" path="res://Ludo/Generado/GeneroDatumo.cs" id="9_ljm4i"]
+[ext_resource type="PackedScene" uid="uid://s726cbt0e57" path="res://Roluloj/Malamikoj/Kuriero.tscn" id="10_q7o70"]
+[ext_resource type="PackedScene" uid="uid://evy4ndt6poo" path="res://UI/koro.tscn" id="12_v83mb"]
+
+[sub_resource type="Environment" id="Environment_jeuk7"]
+background_mode = 1
+background_color = Color(1, 1, 1, 1)
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 16.0
+glow_levels/1 = 3.92
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_sr8tt"]
+dof_blur_far_distance = 7.0
+dof_blur_far_transition = 25.0
+
+[sub_resource type="CompositorEffect" id="CompositorEffect_1qe4u"]
+resource_local_to_scene = false
+resource_name = ""
+enabled = true
+effect_callback_type = 4
+needs_motion_vectors = false
+needs_normal_roughness = false
+script = ExtResource("3_lqied")
+shader_code = ""
+
+[sub_resource type="Compositor" id="Compositor_nolea"]
+compositor_effects = Array[CompositorEffect]([SubResource("CompositorEffect_1qe4u")])
+
+[node name="Ludejo3D" type="Node3D" node_paths=PackedStringArray("tabulo", "GenerAlteco", "malamikSinSekvoj", "Koroj")]
+process_mode = 1
+script = ExtResource("1_26x4p")
+turoSceno = ExtResource("4_rxueu")
+tabulo = NodePath("Mondo/Board")
+GenerAlteco = NodePath("Logiko/GenerAlto")
+malamikSinSekvoj = NodePath("Logiko/MalamikSinSekvoj")
+generUmbroSceno = ExtResource("3_r33pe")
+KurieroSceno = ExtResource("10_q7o70")
+Koroj = [NodePath("Koro"), NodePath("Koro2"), NodePath("Koro3")]
+
+[node name="Logiko" type="Node" parent="."]
+
+[node name="MalamikSinSekvoj" type="Node" parent="Logiko"]
+script = ExtResource("7_y4eld")
+
+[node name="GenerGrupo" type="Node" parent="Logiko/MalamikSinSekvoj"]
+script = ExtResource("8_1vaus")
+
+[node name="Genero" type="Node" parent="Logiko/MalamikSinSekvoj/GenerGrupo"]
+script = ExtResource("9_ljm4i")
+Horizontalo = 6
+Vertikalo = 7
+
+[node name="GenerGrupo2" type="Node" parent="Logiko/MalamikSinSekvoj"]
+script = ExtResource("8_1vaus")
+
+[node name="Genero" type="Node" parent="Logiko/MalamikSinSekvoj/GenerGrupo2"]
+script = ExtResource("9_ljm4i")
+Horizontalo = 6
+Vertikalo = 7
+
+[node name="Genero2" type="Node" parent="Logiko/MalamikSinSekvoj/GenerGrupo2"]
+script = ExtResource("9_ljm4i")
+Horizontalo = 5
+Vertikalo = 6
+
+[node name="Genero3" type="Node" parent="Logiko/MalamikSinSekvoj/GenerGrupo2"]
+script = ExtResource("9_ljm4i")
+Horizontalo = 4
+Vertikalo = 5
+RelativaGenerTempo = 1
+
+[node name="GenerAlto" type="Node3D" parent="Logiko"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11, 0)
+
+[node name="SencimPaŭzilo" type="Node" parent="Logiko"]
+process_mode = 3
+script = ExtResource("5_x7g5r")
+
+[node name="MesaĝBuso" type="Node" parent="Logiko"]
+script = ExtResource("6_6j6to")
+
+[node name="Mondo" type="Node" parent="."]
+
+[node name="Board" parent="Mondo" instance=ExtResource("2_g248a")]
+process_mode = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, -0.2, -3.5)
+
+[node name="Camera3D" type="Camera3D" parent="Mondo"]
+process_mode = 1
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 3, 6, 0)
+environment = SubResource("Environment_jeuk7")
+attributes = SubResource("CameraAttributesPractical_sr8tt")
+compositor = SubResource("Compositor_nolea")
+size = 8.547
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Mondo"]
+transform = Transform3D(1, 0, 0, 0, 0.891038, 0.453928, 0, -0.453928, 0.891038, 1.02897, 3.00495, 1.19851)
+
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 3, -3)
+
+[node name="Koro" parent="." instance=ExtResource("12_v83mb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -3)
+
+[node name="Koro3" parent="." instance=ExtResource("12_v83mb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -2)
+
+[node name="Koro2" parent="." instance=ExtResource("12_v83mb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -1)

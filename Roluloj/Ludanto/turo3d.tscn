@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://c2nwumbjfvcv"]
+
+[ext_resource type="Script" path="res://Roluloj/Ludanto/Turo3d.cs" id="1_3sxhn"]
+[ext_resource type="ArrayMesh" uid="uid://br3obsrug5ier" path="res://Roluloj/Ludanto/fekturo.obj" id="1_7pou1"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_a53a8"]
+radius = 1.98448
+height = 6.69897
+
+[node name="Turo" type="CharacterBody3D"]
+transform = Transform3D(0.125, 0, 0, 0, 0.125, 0, 0, 0, 0.125, 0, 0, 0)
+axis_lock_linear_y = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+script = ExtResource("1_3sxhn")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_7pou1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.99983, 0)
+shape = SubResource("CapsuleShape3D_a53a8")

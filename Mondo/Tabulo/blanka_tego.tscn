@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://dv1c2akq71xi4"]
+
+[ext_resource type="Shader" path="res://Mondo/Tabulo/blanka_tego.gdshader" id="1_xtft0"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_hc6s0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t7n5j"]
+render_priority = 0
+shader = ExtResource("1_xtft0")
+
+[node name="Tile" type="CSGMesh3D"]
+transform = Transform3D(1, 0, 0, 0, 0.397246, 0, 0, 0, 1, 0, 0, 0)
+layers = 3
+mesh = SubResource("BoxMesh_hc6s0")
+material = SubResource("ShaderMaterial_t7n5j")

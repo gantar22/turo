@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://b3x86ewwolfnt"]
+
+[ext_resource type="Shader" path="res://Mondo/Tabulo/nigra_tego.gdshader" id="1_kahxx"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_hc6s0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tduwd"]
+render_priority = 0
+shader = ExtResource("1_kahxx")
+
+[node name="Tile2" type="CSGMesh3D"]
+transform = Transform3D(1, 0, 0, 0, 0.397246, 0, 0, 0, 1, 1, 0, 0)
+layers = 3
+mesh = SubResource("BoxMesh_hc6s0")
+material = SubResource("ShaderMaterial_tduwd")

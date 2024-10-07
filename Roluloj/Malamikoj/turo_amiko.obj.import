@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://u33pwaiqxy75"
+path="res://.godot/imported/turo_amiko.obj-64e9db99ea4117a4b8992668635054cc.mesh"
+
+[deps]
+
+files=["res://.godot/imported/turo_amiko.obj-64e9db99ea4117a4b8992668635054cc.mesh"]
+
+source_file="res://Roluloj/Malamikoj/turo_amiko.obj"
+dest_files=["res://.godot/imported/turo_amiko.obj-64e9db99ea4117a4b8992668635054cc.mesh", "res://.godot/imported/turo_amiko.obj-64e9db99ea4117a4b8992668635054cc.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

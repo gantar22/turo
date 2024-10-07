@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://ctl13plch680f"]
+
+[ext_resource type="Script" path="res://Ludo/Generado/GenerUmbro.cs" id="1_g3tl7"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_mhjyf"]
+
+[node name="GenerUmbro" type="Node3D"]
+script = ExtResource("1_g3tl7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.05, 0, 0, 0, 1, 0, 0.1, 0)
+mesh = SubResource("CylinderMesh_mhjyf")
