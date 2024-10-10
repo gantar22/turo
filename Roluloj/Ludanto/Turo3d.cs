@@ -4,28 +4,34 @@ using System.Linq;
 
 public partial class Turo3d : CharacterBody3D
 {
+	[Export] private Node3D[] DiafanajKopioj;
 	public const float BazRapido = 5.0f;
 	public const float ĜustigaRapido = 20.0f;
+	public const float FulmoDaŭro = .05f;
+	public const float RefortiĝDaŭro = .075f;
 
 	public abstract record Stato
 	{
 		public record Baza() : Stato;
-		public record Vundata(Vector2 retroPuŝDirekto, float daŭro, Stato revenStato) : Stato;
-		public record Atakanta() : Stato;
+		public record Komenca(Vector2I Loko, float Tempo) : Stato;
+		public record Vundata(Vector2I Destino, float daŭro) : Stato;
+		public record Atakanta(Vector3 De, Vector3 Al, int Kvanto, float Tempo, int etapo) : Stato;
 
-		public record Mortinta() : Stato;
+		public record Mortinta(float Tempo) : Stato;
 	}
 
 	public Stato stato = new Stato.Baza();
+	public int energiKvanto = 0;
 	
 	public void Ĝisdatigi(double delta, Tabulo tabulo)
 	{
 		switch (stato)
 		{
 			case Stato.Atakanta atakanta:
+				TraktiAtakantan(atakanta,delta,tabulo);
 				break;
 			case Stato.Baza baza:
-				_TraktiBazan(baza, delta, tabulo);
+				TraktiBazan(baza, delta, tabulo);
 				break;
 			case Stato.Vundata vundata:
 				break;
@@ -36,7 +42,41 @@ public partial class Turo3d : CharacterBody3D
 		}
 	}
 
-	void _TraktiBazan(Stato.Baza stato, double delta, Tabulo tabulo)
+	public void TraktiAtakantan(Stato.Atakanta atakanta, double delta, Tabulo tabulo)
+	{
+		float Tempo = atakanta.Tempo + (float)delta;
+		// "daŝi"
+		if (atakanta.etapo < atakanta.Kvanto)
+		{
+			Tempo = Mathf.Min(Tempo,FulmoDaŭro);
+			Vector3 celo = atakanta.De.Lerp(atakanta.Al, (atakanta.etapo + atakanta.Tempo / FulmoDaŭro) / (float)atakanta.Kvanto);
+			Velocity = (celo - Position) / (float)delta;
+			MoveAndSlide();
+			
+			// pro la min, ĉi-tiu egalkontrolo licas
+			if (Tempo == FulmoDaŭro)
+			{
+				// farenda: montru diafanan kopion
+				stato = atakanta with { etapo = atakanta.etapo + 1, Tempo = 0};
+				return;
+			}
+
+			stato = atakanta with { Tempo = Tempo };
+			return;
+		}
+		
+		// refortiĝi
+		if (Tempo > RefortiĝDaŭro)
+		{
+			stato = new Stato.Baza();
+			return;
+		}
+
+		stato = atakanta with { Tempo = Tempo };
+	}
+
+
+	public void TraktiBazan(Stato.Baza baza, double delta, Tabulo tabulo)
 	{
 		Vector3 velocity = Velocity;
 
@@ -45,6 +85,16 @@ public partial class Turo3d : CharacterBody3D
 		// farenda: trakti egalvenkojn
 		enigDirekto = enigoDirektoj.MinBy(_ => _.DistanceSquaredTo(enigDirekto));
 		Vector3 direction = (new Vector3(enigDirekto.X, 0, enigDirekto.Y)).Normalized();
+		
+		if (Input.IsActionJustPressed("primary"))
+		{
+			if (energiKvanto > 0)
+			{
+				stato = KomenciAtakon(tabulo,direction, ref energiKvanto);
+			}
+			return;
+		}
+		
 		if (direction != Vector3.Zero)
 		{
 			velocity.X = direction.X * BazRapido;
@@ -77,4 +127,16 @@ public partial class Turo3d : CharacterBody3D
 		Velocity = krampitaRapido;
 		MoveAndSlide();
 	}
+
+	Stato KomenciAtakon(Tabulo tabulo, Vector3 vel, ref int energio)
+	{
+		Vector3 De = Position;
+		Vector3 Al = De + vel * energio;
+		Al = tabulo.KrampiPozEnTabulo(Al);
+		var uzitaEnergio = Mathf.RoundToInt((Al - De).Floor().Length());
+		energio -= uzitaEnergio;
+		
+		return new Stato.Atakanta(De,Al,uzitaEnergio,0f,0);
+	}
+	
 }

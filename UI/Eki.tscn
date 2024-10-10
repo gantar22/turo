@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://cdu3w5dgoaeri"]
+
+[ext_resource type="FontFile" uid="uid://bjg5l7jffjit8" path="res://UI/Kenney Future Square.ttf" id="1_cckdg"]
+[ext_resource type="Script" path="res://UI/Eki.cs" id="1_ws1fr"]
+
+[node name="Eki" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ws1fr")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_disabled_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_cckdg")
+theme_override_font_sizes/font_size = 231
+text = "Eki!"
+
+[connection signal="button_up" from="Button" to="." method="Ek"]
+[connection signal="button_up" from="Button" to="." method="JeKlako"]

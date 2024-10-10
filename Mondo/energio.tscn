@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://dgp4xnunq2d3r"]
+
+[ext_resource type="Script" path="res://Mondo/Energio.cs" id="1_tr6iv"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_erh3k"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_msast"]
+radius = 1.0
+
+[node name="Energio" type="Node3D"]
+script = ExtResource("1_tr6iv")
+
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(0.33, 0, 0, 0, 0.33, 0, 0, 0, 0.33, 0, 0.5, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D"]
+mesh = SubResource("SphereMesh_erh3k")
+skeleton = NodePath("../..")
+
+[node name="Area3D" type="Area3D" parent="Node3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/Area3D"]
+shape = SubResource("SphereShape3D_msast")
+
+[connection signal="body_entered" from="Node3D/Area3D" to="." method="OnBodyEnter"]

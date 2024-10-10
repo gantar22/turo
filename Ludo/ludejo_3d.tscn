@@ -1,9 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://v65pi7cwvvso"]
+[gd_scene load_steps=22 format=3 uid="uid://v65pi7cwvvso"]
 
 [ext_resource type="Script" path="res://Ludo/Ludejo3d.cs" id="1_26x4p"]
 [ext_resource type="PackedScene" uid="uid://juyqe37obccf" path="res://Mondo/Tabulo/board.tscn" id="2_g248a"]
 [ext_resource type="Script" path="res://Ludo/Utilaĵoj/post_process_shader.gd" id="3_lqied"]
 [ext_resource type="PackedScene" uid="uid://ctl13plch680f" path="res://Ludo/Generado/GenerUmbro.tscn" id="3_r33pe"]
+[ext_resource type="PackedScene" uid="uid://dgp4xnunq2d3r" path="res://Mondo/energio.tscn" id="3_wy45u"]
 [ext_resource type="PackedScene" uid="uid://c2nwumbjfvcv" path="res://Roluloj/Ludanto/turo3d.tscn" id="4_rxueu"]
 [ext_resource type="Script" path="res://Ludo/Utilaĵoj/SencimPaŭzilo.cs" id="5_x7g5r"]
 [ext_resource type="Script" path="res://Ludo/Utilaĵoj/MesaĝBuso.cs" id="6_6j6to"]
@@ -12,6 +13,10 @@
 [ext_resource type="Script" path="res://Ludo/Generado/GeneroDatumo.cs" id="9_ljm4i"]
 [ext_resource type="PackedScene" uid="uid://s726cbt0e57" path="res://Roluloj/Malamikoj/Kuriero.tscn" id="10_q7o70"]
 [ext_resource type="PackedScene" uid="uid://evy4ndt6poo" path="res://UI/koro.tscn" id="12_v83mb"]
+[ext_resource type="PackedScene" uid="uid://c3bl7m6rbjkk1" path="res://UI/energi_kvanto.tscn" id="13_jikor"]
+[ext_resource type="PackedScene" uid="uid://cdu3w5dgoaeri" path="res://UI/Eki.tscn" id="15_uagwl"]
+[ext_resource type="PackedScene" uid="uid://dp0gm0aoinq8l" path="res://UI/venkis.tscn" id="16_t1dgd"]
+[ext_resource type="PackedScene" uid="uid://b0ymefth6268d" path="res://UI/malvenkis.tscn" id="18_gny5h"]
 
 [sub_resource type="Environment" id="Environment_jeuk7"]
 background_mode = 1
@@ -37,11 +42,16 @@ shader_code = ""
 [sub_resource type="Compositor" id="Compositor_nolea"]
 compositor_effects = Array[CompositorEffect]([SubResource("CompositorEffect_1qe4u")])
 
-[node name="Ludejo3D" type="Node3D" node_paths=PackedStringArray("tabulo", "GenerAlteco", "malamikSinSekvoj", "Koroj")]
+[node name="Ludejo3D" type="Node3D" node_paths=PackedStringArray("tabulo", "eki", "venkis", "malvenkis", "energiKvanto", "GenerAlteco", "malamikSinSekvoj", "Koroj")]
 process_mode = 1
 script = ExtResource("1_26x4p")
 turoSceno = ExtResource("4_rxueu")
+energioSceno = ExtResource("3_wy45u")
 tabulo = NodePath("Mondo/Board")
+eki = NodePath("Eki")
+venkis = NodePath("Venkis")
+malvenkis = NodePath("Malvenkis")
+energiKvanto = NodePath("Mondo/Camera3D/EnergiKvanto")
 GenerAlteco = NodePath("Logiko/GenerAlto")
 malamikSinSekvoj = NodePath("Logiko/MalamikSinSekvoj")
 generUmbroSceno = ExtResource("3_r33pe")
@@ -66,17 +76,108 @@ script = ExtResource("8_1vaus")
 
 [node name="Genero" type="Node" parent="Logiko/MalamikSinSekvoj/GenerGrupo2"]
 script = ExtResource("9_ljm4i")
-Horizontalo = 6
-Vertikalo = 7
-
-[node name="Genero2" type="Node" parent="Logiko/MalamikSinSekvoj/GenerGrupo2"]
-script = ExtResource("9_ljm4i")
 Horizontalo = 5
 Vertikalo = 6
 
-[node name="Genero3" type="Node" parent="Logiko/MalamikSinSekvoj/GenerGrupo2"]
+[node name="Genero2" type="Node" parent="Logiko/MalamikSinSekvoj/GenerGrupo2"]
 script = ExtResource("9_ljm4i")
 Horizontalo = 4
+Vertikalo = 6
+RelativaGenerTempo = 1
+
+[node name="GenerGrupo3" type="Node" parent="Logiko/MalamikSinSekvoj"]
+script = ExtResource("8_1vaus")
+
+[node name="Genero" type="Node" parent="Logiko/MalamikSinSekvoj/GenerGrupo3"]
+script = ExtResource("9_ljm4i")
+Vertikalo = 7
+RelativaGenerTempo = 1
+
+[node name="Genero2" type="Node" parent="Logiko/MalamikSinSekvoj/GenerGrupo3"]
+script = ExtResource("9_ljm4i")
+Horizontalo = 7
+Vertikalo = 7
+RelativaGenerTempo = 2
+
+[node name="Genero3" type="Node" parent="Logiko/MalamikSinSekvoj/GenerGrupo3"]
+script = ExtResource("9_ljm4i")
+Horizontalo = 7
+RelativaGenerTempo = 4
+
+[node name="Genero4" type="Node" parent="Logiko/MalamikSinSekvoj/GenerGrupo3"]
+script = ExtResource("9_ljm4i")
+RelativaGenerTempo = 5
+
+[node name="GenerGrupo4" type="Node" parent="Logiko/MalamikSinSekvoj"]
+script = ExtResource("8_1vaus")
+
+[node name="Genero" type="Node" parent="Logiko/MalamikSinSekvoj/GenerGrupo4"]
+script = ExtResource("9_ljm4i")
+Horizontalo = 1
+Vertikalo = 5
+
+[node name="Genero2" type="Node" parent="Logiko/MalamikSinSekvoj/GenerGrupo4"]
+script = ExtResource("9_ljm4i")
+Horizontalo = 2
+Vertikalo = 6
+
+[node name="Genero3" type="Node" parent="Logiko/MalamikSinSekvoj/GenerGrupo4"]
+script = ExtResource("9_ljm4i")
+Horizontalo = 3
+Vertikalo = 5
+
+[node name="Genero4" type="Node" parent="Logiko/MalamikSinSekvoj/GenerGrupo4"]
+script = ExtResource("9_ljm4i")
+Horizontalo = 4
+Vertikalo = 5
+RelativaGenerTempo = 3
+
+[node name="Genero5" type="Node" parent="Logiko/MalamikSinSekvoj/GenerGrupo4"]
+script = ExtResource("9_ljm4i")
+Horizontalo = 5
+Vertikalo = 6
+RelativaGenerTempo = 3
+
+[node name="Genero6" type="Node" parent="Logiko/MalamikSinSekvoj/GenerGrupo4"]
+script = ExtResource("9_ljm4i")
+Horizontalo = 6
+Vertikalo = 5
+RelativaGenerTempo = 1
+
+[node name="GenerGrupo5" type="Node" parent="Logiko/MalamikSinSekvoj"]
+script = ExtResource("8_1vaus")
+
+[node name="Genero" type="Node" parent="Logiko/MalamikSinSekvoj/GenerGrupo5"]
+script = ExtResource("9_ljm4i")
+Horizontalo = 1
+Vertikalo = 5
+
+[node name="Genero2" type="Node" parent="Logiko/MalamikSinSekvoj/GenerGrupo5"]
+script = ExtResource("9_ljm4i")
+Horizontalo = 2
+Vertikalo = 6
+
+[node name="Genero3" type="Node" parent="Logiko/MalamikSinSekvoj/GenerGrupo5"]
+script = ExtResource("9_ljm4i")
+Horizontalo = 3
+Vertikalo = 5
+RelativaGenerTempo = 1
+
+[node name="Genero4" type="Node" parent="Logiko/MalamikSinSekvoj/GenerGrupo5"]
+script = ExtResource("9_ljm4i")
+Horizontalo = 4
+Vertikalo = 5
+RelativaGenerTempo = 1
+
+[node name="Genero5" type="Node" parent="Logiko/MalamikSinSekvoj/GenerGrupo5"]
+script = ExtResource("9_ljm4i")
+Horizontalo = 5
+Vertikalo = 6
+RelativaGenerTempo = 1
+
+[node name="Genero6" type="Node" parent="Logiko/MalamikSinSekvoj/GenerGrupo5"]
+script = ExtResource("9_ljm4i")
+Horizontalo = 6
 Vertikalo = 5
 RelativaGenerTempo = 1
 
@@ -104,6 +205,9 @@ attributes = SubResource("CameraAttributesPractical_sr8tt")
 compositor = SubResource("Compositor_nolea")
 size = 8.547
 
+[node name="EnergiKvanto" parent="Mondo/Camera3D" instance=ExtResource("13_jikor")]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 6.13631, 0.141806, -7.01008)
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Mondo"]
 transform = Transform3D(1, 0, 0, 0, 0.891038, 0.453928, 0, -0.453928, 0.891038, 1.02897, 3.00495, 1.19851)
 
@@ -118,3 +222,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -2)
 
 [node name="Koro2" parent="." instance=ExtResource("12_v83mb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -1)
+
+[node name="Eki" parent="." instance=ExtResource("15_uagwl")]
+offset_left = 342.0
+offset_top = 170.0
+offset_right = -324.0
+offset_bottom = -206.0
+
+[node name="Venkis" parent="." instance=ExtResource("16_t1dgd")]
+visible = false
+
+[node name="Malvenkis" parent="." instance=ExtResource("18_gny5h")]
+visible = false

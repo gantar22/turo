@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://s726cbt0e57"]
 
 [ext_resource type="Script" path="res://Roluloj/Malamikoj/Kuriero.cs" id="1_p8hvt"]
-[ext_resource type="ArrayMesh" uid="uid://ofdbtvgx2n4o" path="res://Roluloj/Malamikoj/kuriero.obj" id="2_6vk07"]
+[ext_resource type="PackedScene" uid="uid://bta81jfgvcfky" path="res://Roluloj/Malamikoj/kuriero(1).fbx" id="4_y0i8k"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_p8avs"]
 radius = 0.168724
@@ -24,15 +24,13 @@ vundigSkatolo = NodePath("VundigSkatolo")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.388883, 0)
 shape = SubResource("CapsuleShape3D_p8avs")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(-5.46392e-09, 0, 0.125, 0, 0.125, 0, -0.125, 0, -5.46392e-09, 0, 0, 0)
-mesh = ExtResource("2_6vk07")
-skeleton = NodePath("")
-
 [node name="VundigSkatolo" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="VundigSkatolo"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.441489, 0)
 shape = SubResource("CylinderShape3D_i0u6h")
+
+[node name="kuriero(1)" parent="." instance=ExtResource("4_y0i8k")]
+transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, 0, 0, 0)
 
 [connection signal="body_entered" from="VundigSkatolo" to="." method="OnBodyEnter"]

@@ -21,10 +21,11 @@ public partial class Kuriero : BazMalamiko
 
 	public MovStato movStato;
 
-	public override void JeSurTeriĝo()
+	public override void JeSurTeriĝo(Vector2I Loko, int alvenTempo)
 	{
 		base.JeKreiĝo();
 		aiStato = new AIStato.Ĉasi(false);
+		movStato = new MovStato.Resti(Loko,alvenTempo, false);
 	}
 
 	// farenda: havu du tipojn de movoj (atakoj kaj movoj)
@@ -32,7 +33,7 @@ public partial class Kuriero : BazMalamiko
 
 	public record ĈasiLogiko(bool Atakus, Vector2I NunaLoko, Vector2I CelLoko);
 	
-	public ĈasiLogiko AkiriĈasiLogiko(Turo3d Turo, Tabulo tabulo, float TaktoDuro, List<Ludejo3d.TegoloOkupiĝDatumo> okupiĝDatumoj)
+	public ĈasiLogiko AkiriĈasiLogiko(Turo3d Turo, Tabulo tabulo, float TaktoDuro)
 	{
 		var turaTegolo = tabulo.TroviPlejProksimaTegolo(Turo.Position);
 		var miaLoko = tabulo.TroviPlejProksimaTegolo(Position);
@@ -147,5 +148,22 @@ public partial class Kuriero : BazMalamiko
 				);
 			}
 		}
+	}
+
+	public static List<Vector2I> OkupitajTegolojDePado(Vector2I De, Vector2I Al)
+	{
+		Vector2I Dif = Al - De;
+		if (Math.Abs(Dif.X) != Math.Abs(Dif.Y))
+		{
+			GD.PrintErr("Nevalida Movo");
+		}
+		List<Vector2I> Tegoloj = new List<Vector2I>();
+		Vector2I Dir = new Vector2I(Mathf.Sign(Dif.X), Mathf.Sign(Dif.Y));
+		for (int i = 0; i <= Math.Abs(Dif.X); i++)
+		{
+			Tegoloj.Add(De + Dir * i);
+		}
+
+		return Tegoloj;
 	}
 }

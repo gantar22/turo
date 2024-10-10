@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=3 uid="uid://b0ymefth6268d"]
+
+[ext_resource type="Script" path="res://UI/Malvenkis.cs" id="1_wblbk"]
+[ext_resource type="FontFile" uid="uid://bjg5l7jffjit8" path="res://UI/Kenney Future Square.ttf" id="2_d5jqe"]
+
+[node name="Malvenkis" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 342.0
+offset_top = 170.0
+offset_right = -324.0
+offset_bottom = -206.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wblbk")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_disabled_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_d5jqe")
+theme_override_font_sizes/font_size = 75
+text = "Vi mortis
+Ĉu ludi, denove?"
+
+[connection signal="button_up" from="Button" to="." method="Premi"]

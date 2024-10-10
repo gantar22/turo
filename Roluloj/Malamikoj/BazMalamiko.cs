@@ -12,7 +12,7 @@ public abstract partial class BazMalamiko : CharacterBody3D
 	{
 	}
 
-	public virtual void JeSurTeriĝo()
+	public virtual void JeSurTeriĝo(Vector2I Loko, int AlvenTempo)
 	{
 		if (MesaĝBuso.Singleton != null)
 		{

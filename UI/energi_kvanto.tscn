@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://c3bl7m6rbjkk1"]
+
+[ext_resource type="FontFile" uid="uid://bjg5l7jffjit8" path="res://UI/Kenney Future Square.ttf" id="1_rh1km"]
+[ext_resource type="Script" path="res://UI/EnergiKvanto.cs" id="1_yeu60"]
+
+[sub_resource type="TextMesh" id="TextMesh_mg6dg"]
+font = ExtResource("1_rh1km")
+
+[node name="EnergiKvanto" type="Node3D"]
+script = ExtResource("1_yeu60")
+
+[node name="teksto" type="MeshInstance3D" parent="."]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+mesh = SubResource("TextMesh_mg6dg")
